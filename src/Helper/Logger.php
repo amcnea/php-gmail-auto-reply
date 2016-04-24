@@ -172,7 +172,7 @@ class Logger implements LoggerInterface
      */
     public function log($level, $message, array $context = array())
     {
-        if ($level <= $this->logLevel) {
+        if ($level >= $this->logLevel) {
             $level = $this->getNameFromLogLevel($level);
             $context = implode(',', $context);
             echo  "$level: [$context] - $message\n";
