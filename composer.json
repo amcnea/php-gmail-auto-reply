@@ -1,0 +1,19 @@
+{
+    "name": "alanmcnea/gmail-auto-reply",
+    "description": "Handles auto-replying to emails especially with gmail",
+    "license": "BSD Simplified",
+    "authors": [
+        {
+            "name": "Alan McNea",
+            "email": "alanmcnea@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "~5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "AutoReply\\": "src"
+        }
+    }
+}
