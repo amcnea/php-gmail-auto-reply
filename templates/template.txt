@@ -1,0 +1,5 @@
+Hello, {name}
+This email address is <u>not monitored</u>.
+This is a sample template auto-response message sent on {date}.
+This message is in response to you message labeled "{subject}" received on {senddate}.
+Thanks,
