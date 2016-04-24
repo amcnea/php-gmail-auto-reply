@@ -1,0 +1,20 @@
+<?php
+/*
+Please see the url below for information about imap search strings
+http://php.net/manual/en/function.imap-search.php
+
+For 'emailTemplate', do not add the extension.  It will look for a .html file and a .txt file with the same name.
+The 'emailTemplate' with the .html is required, the .txt is optional.
+Templates should be located in the 'templates' directory
+*/
+return [
+    [
+        'mailboxName' => 'INBOX',
+        'imapSearch' => 'SUBJECT "TEST MESSAGE"',
+        'emailTemplate' => 'template',
+        'fromEmail' => 'no-reply@domain.com',
+        'fromName' => 'Auto Responder',
+        'bbcEmail' => 'copy@domain.com', //Optional - line can be remove
+        'bbcName' => 'CEO OF DOMAIN', //Optional - line can be remove
+    ]
+];
