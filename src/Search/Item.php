@@ -9,24 +9,24 @@ use AutoReply\Mail\EmailOverviewInterface;
  * matches on these search items.
  *
  * @method string getImapSearch()
- * @method string getResponseTemplate()
+ * @method string getEmailTemplate()
  * @method string getMailboxName()
  * @method string getFromEmail()
  * @method string getFromName()
  * @method string getBbcEmail()
  * @method string getBbcName()
  * @method string getEmails()
- * @method string setBbcEmail(string)
- * @method string setBbcName(string)
+ * @method void setBbcEmail(string $value)
+ * @method void setBbcName(string $value)
  */
 class Item
 {
     /** @var string */
+    protected $mailboxName;
+    /** @var string */
     protected $imapSearch;
     /** @var string */
-    protected $responseTemplate;
-    /** @var string */
-    protected $mailboxName;
+    protected $emailTemplate;
     /** @var string */
     protected $fromEmail;
     /** @var string */
@@ -51,21 +51,21 @@ class Item
      * Item constructor.
      * @param string $mailboxName The name of the imap mailbox associated with the search
      * @param string $imapSearch The imap search string to use
-     * @param string $responseTemplate The response email associated with this email
+     * @param string $emailTemplate The response email associated with this email
      * @param string $fromName The name to use on the response email
      * @param string $fromEmail The response email address to use
      */
-    public function __construct($mailboxName, $imapSearch, $responseTemplate, $fromName, $fromEmail)
+    public function __construct($mailboxName, $imapSearch, $emailTemplate, $fromName, $fromEmail)
     {
         $this->mailboxName = $mailboxName;
         $this->imapSearch = $imapSearch;
         $this->fromEmail = $fromEmail;
         $this->fromName = $fromName;
 
-        if (!defined('TEMPLATE_DIR') || $responseTemplate{0} === '/') {
-            $this->responseTemplate = $responseTemplate;
+        if (!defined('TEMPLATE_DIR') || $emailTemplate{0} === '/') {
+            $this->emailTemplate = $emailTemplate;
         } else {
-            $this->responseTemplate = TEMPLATE_DIR . '/' . $responseTemplate;
+            $this->emailTemplate = TEMPLATE_DIR . '/' . $emailTemplate;
         }
     }
 
