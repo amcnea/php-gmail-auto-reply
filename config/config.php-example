@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'send_email' => false,          //Send the email, set to true when you ready to go live
+    'log_level'   => 'DEBUG',       //Sets the level of verbosity
+    'time_format' => 'Y-d-m H:i:s', //Used for data substitutions in email tempaltes
+    //Incoming Configs
+    'email.incoming.username' => 'username@gmail.com',
+    'email.incoming.password' => 'your_password',
+    'email.incoming.host'     => 'imap.gmail.com',
+    'email.incoming.port'     => 993,
+    'email.incoming.secure'   => true,
+    //Outgoing Configs
+    'email.outgoing.username'   => 'username@gmail.com',
+    'email.outgoing.password'   => 'your_password',
+    'email.outgoing.host'       => 'smtp.googlemail.com',
+    'email.outgoing.port'       => 587,
+    'email.outgoing.smtpauth'   => true,
+    'email.outgoing.smtpsecure' => 'tls',
+];
