@@ -7,7 +7,7 @@ class Config
     /**
      * @var self|null
      */
-    static protected $me = null;
+    protected static $me = null;
 
     /**
      * Holds the configuration data
@@ -45,7 +45,8 @@ class Config
      * @param $index
      * @return mixed
      */
-    public function get($index) {
+    public function get($index)
+    {
         if (isset($this->configArray[$index])) {
             return $this->configArray[$index];
         }

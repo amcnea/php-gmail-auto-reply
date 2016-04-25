@@ -96,7 +96,7 @@ class Item
             if (property_exists($this, $propertyName)) {
                 return $this->{$propertyName};
             }
-        } else if ($type === 'set') {
+        } elseif ($type === 'set') {
             $propertyName = lcfirst(substr($methodName, 3));
             if (in_array($propertyName, $settableProperties)) {
                 $this->{$propertyName} = $args[0];

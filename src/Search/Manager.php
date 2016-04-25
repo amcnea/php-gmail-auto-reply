@@ -7,13 +7,13 @@ use RuntimeException;
 
 /**
  * Class Manager
- * 
+ *
  * Manages reading the search config file and compiling a list of search items
  */
 class Manager
 {
     /** @var self|null */
-    static protected $me = null;
+    protected static $me = null;
 
     /** @var array[Item] */
     protected $items = [];

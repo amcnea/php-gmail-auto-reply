@@ -17,7 +17,7 @@ class Logger implements LoggerInterface
     const EMERGENCY = 600;
 
     /** @var self|null */
-    static protected $me = null;
+    protected static $me = null;
     /** @var integer */
     protected $logLevel;
 

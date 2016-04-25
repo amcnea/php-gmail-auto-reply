@@ -11,7 +11,7 @@ use PHPMailer;
 class SmtpHandler
 {
     /** @var self|null */
-    static protected $me = null;
+    protected static $me = null;
     /** @var PHPMailer */
     protected $mailer;
     /** @var string */
@@ -93,7 +93,7 @@ class SmtpHandler
 
     /**
      * Sends a reply to an email
-     * 
+     *
      * @param EmailOverviewInterface $emailOverview
      * @param SearchItem $searchItem
      */

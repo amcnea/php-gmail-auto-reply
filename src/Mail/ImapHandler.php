@@ -19,7 +19,7 @@ class ImapHandler
     /**
      * @var self|null
      */
-    static protected $me = null;
+    protected static $me = null;
 
     /** @var bool */
     protected $ssl;
