@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+
+//DEFINE GLOBALS
+define('ROOT_DIR', realpath(dirname(__FILE__) . '/..'));
+define('TEMPLATE_DIR', ROOT_DIR . '/templates');
+define('CONFIG_DIR', ROOT_DIR . '/config');
+
+//LOAD AUTOLOADER
+require ROOT_DIR . '/vendor/autoload.php';
+
+//INCLUDE CLASSES
+use AutoReply\Helper\Config;
+use AutoReply\Helper\Logger;
+use AutoReply\Mail\ImapHandler;
+use AutoReply\Mail\SmtpHandler;
+
+//LOAD CONFIGS
+Config::instance()->setConfigs(include CONFIG_DIR . '/config.php');
+
+//INITIALIZE OBJECTS
+$logger = Logger::instance();
+$imap = ImapHandler::instance();
+$smtp = SmtpHandler::instance();
+
+//SEARCH MAILBOXES
+try {
+    $searchResults = $imap->searchMailboxes();
+} catch (RuntimeException $ex) {
+    $logger->error("An error occurred (fatal): " . $ex->getMessage(), ['MAIN LOOP']);
+    exit(1);
+}
+
+//RESPOND TO EMAILS
+foreach ($searchResults as $searchItem) {
+    foreach ($searchItem->emails as $email) {
+        try {
+            $imap->markEmail($searchItem->getMailboxName(), $email->uid, ImapHandler::MARK_SEEN);
+            $smtp->sendReply($email, $searchItem);
+            $imap->markEmail($searchItem->getMailboxName(), $email->uid, ImapHandler::MARK_ANSWERED);
+        } catch (RuntimeException $ex) {
+            $logger->error("An error occurred: " . $ex->getMessage() . "\nMoving on to next email", ['MAIN LOOP']);
+        }
+    }
+}
