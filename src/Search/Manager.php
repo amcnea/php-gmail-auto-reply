@@ -114,7 +114,7 @@ class Manager
      *
      * @return array[string]
      */
-    public function getMailboxName()
+    public function getMailboxNames()
     {
         return array_keys($this->mailboxNames);
     }
