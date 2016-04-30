@@ -107,8 +107,8 @@ class SmtpHandler
         $parsedAddress = $this->mailer->parseAddresses($emailOverview->from);
         $this->mailer->clearAddresses();
         $this->mailer->isHTML(true);
-        $this->mailer->From = $searchItem->getFromEmail();
-        $this->mailer->FromName = $searchItem->getFromName();
+        $this->mailer->setFrom($searchItem->getFromEmail(), $searchItem->getFromName());
+        $this->mailer->addReplyTo($searchItem->getFromEmail(), $searchItem->getFromName());
         if ($searchItem->getBbcEmail() !== null) {
             $this->mailer->addBCC($searchItem->getBbcEmail(), $searchItem->getBbcName());
         }
